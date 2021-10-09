@@ -9,7 +9,7 @@ const CartView = ({ cart }) => {
   let cartTotal = 0;
 
   const closeOrder = async () => {
-    const response = await axios
+    await axios
       .put(`https://slowfood.heroku.com/api/carts?=125&finalized=true`)
       .then((response) => {
         setFinalizeOrder(response.data.cart.finalized);
