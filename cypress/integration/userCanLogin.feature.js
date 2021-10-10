@@ -1,6 +1,6 @@
 describe("User can enter user data and login", () => {
   beforeEach(() => {
-    cy.intercept("**api/auth/**", {
+    cy.intercept("POST, **api/auth/sign_in", {
       fixture: "loginFixture.json",
     }).as("loginResponse");
     cy.visit("/");
@@ -15,7 +15,7 @@ describe("User can enter user data and login", () => {
     before(() => {
       cy.get("[data-cy=email-input]").type("user@email.com");
       cy.get("[data-cy=password-input]").type("password");
-      cy.get("[data-cy=submission-login]").click({ multiple: true });
+      cy.get("[data-cy=submission-login]").click();
     });
     it("is expected that the response includes a success status", () => {
       cy.wait("@loginResponse").its("response.statusCode").should("eq", 200);
