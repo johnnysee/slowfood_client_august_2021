@@ -1,39 +1,50 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Container, Modal, Form, Input, Button } from "semantic-ui-react";
+import { Container, Form, Input, Button } from "semantic-ui-react";
 import { validateEmail } from "./validateEmail";
 
 const Login = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [open, setOpen] = useState(false);
   const [validEmail, setValidEmail] = useState(true);
+  const [loginStatus, setLoginStatus] = useState(false);
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    axios({
-      method: "post",
-      url: "https://slowfood.heroku.com/api/auth/sign_in/",
-      params: {
-        email: userEmail,
-        password: userPassword,
-      },
-    }).then((response) => {
-      if (response.data.status === "success") {
-        setOpen(true);
-      }
-    });
+  // const handleSubmit = (evt) => {
+  //   evt.preventDefault();
+  //   axios({
+  //     method: "POST",
+  //     url: "https://slowfood2021.heroku.com/api/auth/sign_in/",
+  //     params: {
+  //       email: userEmail,
+  //       password: userPassword,
+  //     },
+  //   }).then((response) => {
+  //     setLoginStatus(response.data.successes);
+  //   });
+  // };
+
+  const handleSubmit = async () => {
+    await axios
+      .post(
+        "https://slowfood2021.heroku.com/api/auth/sign_in/?email=example@email.com&password=password"
+      )
+      .then((response) => {
+        setLoginStatus(response.data.successes);
+      });
   };
 
   return (
     <Container>
+      <div data-cy="login-status">
+        Status: {loginStatus ? "Logged In" : "Logged Out"}
+      </div>
       <Form onSubmit={handleSubmit}>
         <Form.Field
           data-cy="email-input"
           control={Input}
           label="Email"
           id="form-input-control-error-email"
-          placeholder="example@email.com"
+          placeholder="user@email.com"
           value={userEmail}
           onChange={(e) => {
             let inputValue = e.target.value.toLowerCase();
