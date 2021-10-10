@@ -27,6 +27,10 @@ describe("User can browser through the app", () => {
     cy.get("[data-cy=btn-signup]").should("be.visible");
   });
 
+  it("is expected to display a login button", () => {
+    cy.get("[data-cy=login-btn]").should("be.visible");
+  });
+
   it("is expected to display a footer", () => {
     cy.get("[data-cy=footer]").should("contain", "Funny quip goes here");
   });
