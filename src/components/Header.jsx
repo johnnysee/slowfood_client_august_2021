@@ -52,6 +52,17 @@ const Header = () => {
       >
         Sign up
       </Menu.Item>
+      <Menu.Item
+        id="login"
+        name="login"
+        as={Link}
+        to={{ pathname: "/login" }}
+        data-cy="login-btn"
+        active={activeItem === "login"}
+        onClick={setActiveItem}
+      >
+        Login
+      </Menu.Item>
     </Menu>
   );
 };
