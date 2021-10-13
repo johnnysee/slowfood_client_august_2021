@@ -13,19 +13,22 @@ const MenuPage = () => {
   const [viewCart, setViewCart] = useState();
 
   useEffect(() => {
-    axios.get("https://desolate-beach-43985.herokuapp.com/api/products").then((response) => {
-      setMenuItems(response.data.products);
-    });
+    axios
+      .get("https://desolate-beach-43985.herokuapp.com/api/products")
+      .then((response) => {
+        setMenuItems(response.data.products);
+      });
   }, []);
 
   const addToCart = async (itemId) => {
     let flashMessage;
-    const method = cart ? "PUT" : "POST";
+    const apiUrl = "https://desolate-beach-43985.herokuapp.com/api";
     try {
       const response = await axios({
-        method: method,
-        url: "https://desolate-beach-43985.herokuapp.com/api/carts",
+        method: cart ? "PUT" : "POST",
+        url: cart ? `${apiUrl}/carts/${cart.id}` : `${apiUrl}/carts`,
         data: { product_id: itemId },
+        headers: JSON.parse(localStorage.getItem("J-tockAuth-Storage")),
       });
       const responseMessage = response.data.message;
       const product = response.data.cart.products.id === itemId;

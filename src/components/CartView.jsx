@@ -9,12 +9,15 @@ const CartView = ({ cart }) => {
   let cartTotal = 0;
 
   const closeOrder = async () => {
-    await axios
-      .put(`https://desolate-beach-43985.herokuapp.com/api/carts?=125&finalized=true`)
-      .then((response) => {
-        setFinalizeOrder(response.data.cart.finalized);
-        setResponseMessage(response.data.message);
-      });
+    await axios({
+      method: "PUT",
+      url: `https://desolate-beach-43985.herokuapp.com/api/carts/${cart.id}`,
+      data: { finalized: true },
+      headers: JSON.parse(localStorage.getItem("J-tockAuth-Storage")),
+    }).then((response) => {
+      setFinalizeOrder(response.data.cart.finalized);
+      setResponseMessage(response.data.message);
+    });
   };
 
   const cartProducts = cart?.products.map((product) => {
@@ -37,13 +40,11 @@ const CartView = ({ cart }) => {
         </div>
         <div data-cy="cart-products">{cartProducts}</div>
         <div data-cy="cart-total">
-          {" "}
           {responseMessage ? "Paid" : "To pay"}
           {`: ${cartTotal}kr`}
         </div>
       </div>
-      <div>
-        {" "}
+      <>
         {responseMessage ? (
           ""
         ) : (
@@ -51,7 +52,7 @@ const CartView = ({ cart }) => {
             Finalize Order
           </Button>
         )}
-      </div>
+      </>
 
       <h3 data-cy="finalize-response-message">{`${responseMessage}`}</h3>
     </>
