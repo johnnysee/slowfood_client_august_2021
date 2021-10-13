@@ -15,7 +15,7 @@ const HomePage = () => {
   return (
     <Container>
       {showLogin ? (
-        <React.Fragment>
+        <>
           <h2>Login to the application</h2>
           <input
             type="text"
@@ -30,9 +30,9 @@ const HomePage = () => {
           <button data-cy="login-submit" onClick={() => handleAuthentication()}>
             Login
           </button>
-        </React.Fragment>
+        </>
       ) : (
-        <React.Fragment>
+        <>
           <h2>Welcome to</h2>
           <h1
             size="huge"
@@ -43,7 +43,7 @@ const HomePage = () => {
             Too Gross For Comfort?
           </h1>
           <h2>A unique blend of the world's weirdest cuisines.</h2>
-        </React.Fragment>
+        </>
       )}
     </Container>
   );

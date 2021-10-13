@@ -40,13 +40,11 @@ const CartView = ({ cart }) => {
         </div>
         <div data-cy="cart-products">{cartProducts}</div>
         <div data-cy="cart-total">
-          {" "}
           {responseMessage ? "Paid" : "To pay"}
           {`: ${cartTotal}kr`}
         </div>
       </div>
-      <div>
-        {" "}
+      <>
         {responseMessage ? (
           ""
         ) : (
@@ -54,7 +52,7 @@ const CartView = ({ cart }) => {
             Finalize Order
           </Button>
         )}
-      </div>
+      </>
 
       <h3 data-cy="finalize-response-message">{`${responseMessage}`}</h3>
     </>

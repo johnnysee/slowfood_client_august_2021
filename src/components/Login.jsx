@@ -9,25 +9,11 @@ const Login = () => {
   const [validEmail, setValidEmail] = useState(true);
   const [loginStatus, setLoginStatus] = useState(false);
 
-  // const handleSubmit = (evt) => {
-  //   evt.preventDefault();
-  //   axios({
-  //     method: "POST",
-  //     url: "https://slowfood2021.heroku.com/api/auth/sign_in/",
-  //     params: {
-  //       email: userEmail,
-  //       password: userPassword,
-  //     },
-  //   }).then((response) => {
-  //     setLoginStatus(response.data.successes);
-  //   });
-  // };
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const response = axios({
       method: "POST",
-      url: "https://slowfood2021.heroku.com/api/auth/sign_in",
+      url: "https://desolate-beach-43985.herokuapp.com/api/auth/sign_in",
       params: {
         email: userEmail,
         password: userPassword,

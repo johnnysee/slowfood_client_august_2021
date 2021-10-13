@@ -44,7 +44,7 @@ const Header = () => {
         About
       </Menu.Item>
       {!authenticated ? (
-        <React.Fragment>
+        <>
           <Menu.Item
             data-cy="btn-login"
             active={activeItem === "signup"}
@@ -64,23 +64,12 @@ const Header = () => {
           >
             Sign up
           </Menu.Item>
-        </React.Fragment>
+        </>
       ) : (
         <Menu.Item data-cy="user_name">
           logged in as: {currentUser.email}
         </Menu.Item>
       )}
-      <Menu.Item
-        id="login"
-        name="login"
-        as={Link}
-        to={{ pathname: "/login" }}
-        data-cy="login-btn"
-        active={activeItem === "login"}
-        onClick={setActiveItem}
-      >
-        Login
-      </Menu.Item>
     </Menu>
   );
 };

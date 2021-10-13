@@ -10,7 +10,7 @@ import Login from "./components/Login";
 
 const App = () => {
   return (
-    <body>
+    <>
       <BrowserRouter>
         <Header />
         <Switch>
@@ -22,7 +22,7 @@ const App = () => {
         </Switch>
         <Footer />
       </BrowserRouter>
-    </body>
+    </>
   );
 };
 
