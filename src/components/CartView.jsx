@@ -9,16 +9,6 @@ const CartView = ({ cart }) => {
   let cartTotal = 0;
 
   const closeOrder = async () => {
-<<<<<<< HEAD
-    await axios
-      .put(
-        `https://desolate-beach-43985.herokuapp.com/api/carts?=125&finalized=true`
-      )
-      .then((response) => {
-        setFinalizeOrder(response.data.cart.finalized);
-        setResponseMessage(response.data.message);
-      });
-=======
     await axios({
       method: "PUT",
       url: `https://desolate-beach-43985.herokuapp.com/api/carts/${cart.id}`,
@@ -28,7 +18,6 @@ const CartView = ({ cart }) => {
       setFinalizeOrder(response.data.cart.finalized);
       setResponseMessage(response.data.message);
     });
->>>>>>> a1e92f273c05c22b0377ab0ae8e54a64930e213c
   };
 
   const cartProducts = cart?.products.map((product) => {
