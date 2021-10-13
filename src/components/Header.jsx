@@ -47,13 +47,14 @@ const Header = () => {
         <>
           <Menu.Item
             data-cy="btn-login"
+            position="right"
             active={activeItem === "signup"}
             onClick={() => dispatch({ type: "TOGGLE_LOGIN_UI_VISIBILITY" })}
           >
             Login
           </Menu.Item>
           <Menu.Item
-            position="right"
+            position="right: inherit"
             id="signup"
             name="signup"
             as={Link}
