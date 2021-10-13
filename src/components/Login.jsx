@@ -23,14 +23,17 @@ const Login = () => {
   //   });
   // };
 
-  const handleSubmit = async () => {
-    await axios
-      .post(
-        "https://slowfood2021.heroku.com/api/auth/sign_in/?email=example@email.com&password=password"
-      )
-      .then((response) => {
-        setLoginStatus(response.data.successes);
-      });
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    const response = axios({
+      method: "POST",
+      url: "https://slowfood2021.heroku.com/api/auth/sign_in",
+      params: {
+        email: userEmail,
+        password: userPassword,
+      },
+    });
+    setLoginStatus(response.data);
   };
 
   return (

@@ -1,6 +1,7 @@
 describe("User can enter user data", () => {
   beforeEach(() => {
-    cy.intercept("POST", "**api/auth/sign_in", {
+    cy.intercept("POST", "**api/auth**", {
+      statusCode: 200,
       fixture: "loginFixture.json",
     });
     cy.visit("/");
@@ -20,7 +21,7 @@ describe("User can enter user data", () => {
     });
 
     it("is expected that the login status changes", () => {
-      cy.get("[data-cy=login-status]").should("contain", "Logged out");
+      cy.get("[data-cy=login-status]").should("include", "Logged out");
     });
 
     // it("is expected to bring you to the Menu Page", () => {
